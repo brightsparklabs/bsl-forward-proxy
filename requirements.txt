@@ -1,0 +1,12 @@
+##
+ # Python Dependencies. Install with:
+ #
+ #     pip install -r requirements.txt
+ # _____________________________________________________________________________
+ #
+ # Created by brightSPARK Labs
+ # www.brightsparklabs.com
+ ##
+
+# Ensure versions are specified explicitly here
+bsl-appcli==3.0.0

@@ -1,0 +1,54 @@
+---
+##
+ # The BSL Forward Proxy configuration file.
+ # _____________________________________________________________________________
+ #
+ # Created by brightSPARK Labs
+ # www.brightsparklabs.com
+ ##
+
+bsl_forward_proxy:
+  # Settings pertaining to the services.
+  services:
+    proxy:
+      # Domain of the proxy which all services will be nested under.
+      domain: brightsparklabs.local
+
+      # Whether to use the Acme Staging CA for certificates.
+      enable_staging_ca: false
+
+      # Whether to use internal Caddy certificates rather than Acme ones (useful for testing).
+      enable_internal_tls: true
+
+      # Settings pertaining to the ACME DNS challenge type.
+      acme_dns_challenge:
+        # Whether to use ACME DNS challenge (rather than HTTP challenge) to acquire certificates.
+        enable: true
+
+        # AWS access key with permissions to manipulate Route53 records for DNS challenge.
+        access_key_id: CHANGE ME
+
+        # AWS access key with permissions to manipulate Route53 records for DNS challenge.
+        secret_access_key: CHANGE ME
+
+      storage:
+        # Uncomment to use filesystem (comment out the s3 type below).
+        type: filesystem
+
+        # NOTE: The names `accesskey` and `secretkey` are inline with docker Registry schema.
+        # Uncomment to use s3 (comment out the filesystem type above).
+        #type: s3
+        #accesskey: CHANGE ME
+        #secretkey: CHANGE ME
+        #bucket: bsl.internal.bslnet.production.aws.s3.docker-registry-images
+        #region: ap-southeast-2
+
+  # Settings pertaining to debugging the platform.
+  debug:
+    proxy:
+      # Logging levels are DEBUG, INFO, WARN, ERROR, FATAL, PANIC.
+      log_level: INFO
+
+metadata:
+  # The version of the schema this file conforms to.
+  schema_version: 1

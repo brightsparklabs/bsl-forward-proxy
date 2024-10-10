@@ -1,0 +1,27 @@
+##
+ # Python Dev Dependencies. Install with:
+ #
+ #     pip install -r requirements-dev.txt
+ # _____________________________________________________________________________
+ #
+ # Created by brightSPARK Labs
+ # www.brightsparklabs.com
+ ##
+
+pytest
+ruff==0.4.1
+rope
+
+# ------------------------------------------------------------------------------
+# ONLY UNCOMMENT WHEN DEVELOPING
+# ------------------------------------------------------------------------------
+
+# OPTION 1: Use develop branch
+#git+https://github.com/brightsparklabs/appcli.git@develop
+
+# OPTION 2: Use absolute path to checkout
+#-e file:///path/to/appcli
+
+# OPTION 3: Use relative path to checkout
+# TODO: Remember to change this back once we have a new tag for latest appcli
+# -e ./appcli
