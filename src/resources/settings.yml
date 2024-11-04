@@ -7,41 +7,28 @@
  # www.brightsparklabs.com
  ##
 
-bsl_forward_proxy:
+forward_proxy:
   # Settings pertaining to the services.
   services:
     proxy:
-      # Domain of the proxy which all services will be nested under.
-      domain: brightsparklabs.local
-
       # Whether to use the Acme Staging CA for certificates.
       enable_staging_ca: false
 
       # Whether to use internal Caddy certificates rather than Acme ones (useful for testing).
       enable_internal_tls: true
 
-      # Settings pertaining to the ACME DNS challenge type.
-      acme_dns_challenge:
-        # Whether to use ACME DNS challenge (rather than HTTP challenge) to acquire certificates.
-        enable: true
+  # Settings pertaining to the forwarded networks and routes.
+  routing:
+    # List of known docker networks to route to. Does not need to include the network for this project.
+    # - name: internal-docker-network  <- Internal docker network.
+    #   aliases:
+    #   - "actual-domain.example.com"  <- Aliases. Same as `docker network create --alias $`
+    networks: []
 
-        # AWS access key with permissions to manipulate Route53 records for DNS challenge.
-        access_key_id: CHANGE ME
-
-        # AWS access key with permissions to manipulate Route53 records for DNS challenge.
-        secret_access_key: CHANGE ME
-
-      storage:
-        # Uncomment to use filesystem (comment out the s3 type below).
-        type: filesystem
-
-        # NOTE: The names `accesskey` and `secretkey` are inline with docker Registry schema.
-        # Uncomment to use s3 (comment out the filesystem type above).
-        #type: s3
-        #accesskey: CHANGE ME
-        #secretkey: CHANGE ME
-        #bucket: bsl.internal.bslnet.production.aws.s3.docker-registry-images
-        #region: ap-southeast-2
+    # List of services to route to.
+    # - dns_record: kibana.myproject.local        <- External record.
+    #   endpoint: kibana-montitoring-network:5601 <- Internal service.
+    routes: []
 
   # Settings pertaining to debugging the platform.
   debug:
