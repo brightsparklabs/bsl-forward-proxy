@@ -50,7 +50,7 @@ See [appcli](https://github.com/brightsparklabs/appcli) for information on basic
 The projects can be configured in the `settings.yml` file.
 
 ```yaml
-forward_proxy:
+reverse_proxy:
   # Settings pertaining to the services.
   services:
     proxy:
@@ -74,7 +74,7 @@ forward_proxy:
     routes: []
 ```
 
-It is assumed that all the `forward_proxy.routing.networks` networks have already been created.
+It is assumed that all the `reverse_proxy.routing.networks` networks have already been created.
 If they do not exist, then they will need to be created manually.
 
 ```bash

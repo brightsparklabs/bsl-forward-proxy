@@ -2,7 +2,7 @@
 # # -*- coding: utf-8 -*-
 
 """
-CLI for BSL Forward Proxy.
+CLI for BSL Reverse Proxy.
 ________________________________________________________________________________
 
 Created by brightSPARK Labs
@@ -20,8 +20,8 @@ from appcli.models.configuration import Configuration
 
 def main():
     configuration = Configuration(
-        app_name="forward-proxy",
-        docker_image="docker.brightsparklabs.com/brightsparklabs/forward-proxy",
+        app_name="reverse-proxy",
+        docker_image="docker.brightsparklabs.com/brightsparklabs/reverse-proxy",
     )
     cli = create_cli(configuration)
     cli()

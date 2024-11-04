@@ -1,13 +1,13 @@
 ---
 ##
- # The BSL Forward Proxy configuration file.
+ # The BSL Reverse Proxy configuration file.
  # _____________________________________________________________________________
  #
  # Created by brightSPARK Labs
  # www.brightsparklabs.com
  ##
 
-forward_proxy:
+reverse_proxy:
   # Settings pertaining to the services.
   services:
     proxy:

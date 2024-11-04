@@ -2,21 +2,21 @@
 	email admin@brightsparklabs.com
 
 	log {
-		level {{ settings.forward_proxy.debug.proxy.log_level|lower }}
+		level {{ settings.reverse_proxy.debug.proxy.log_level|lower }}
 	}
 
-	{% if settings.forward_proxy.services.proxy.enable_staging_ca %}
+	{% if settings.reverse_proxy.services.proxy.enable_staging_ca %}
 	acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
-	{% endif %}{# settings.forward_proxy.services.proxy.enable_staging_ca #}
+	{% endif %}{# settings.reverse_proxy.services.proxy.enable_staging_ca #}
 
-	{% if settings.forward_proxy.services.proxy.enable_internal_tls %}
+	{% if settings.reverse_proxy.services.proxy.enable_internal_tls %}
 	local_certs
-	{% endif %}{# settings.forward_proxy.services.proxy.enable_internal_tls #}
+	{% endif %}{# settings.reverse_proxy.services.proxy.enable_internal_tls #}
 
 }
 
 
-{% for route in settings.forward_proxy.routing.routes %}
+{% for route in settings.reverse_proxy.routing.routes %}
 
 https://{{ route.dns_record }} {
     reverse_proxy http://{{ route.endpoint }}

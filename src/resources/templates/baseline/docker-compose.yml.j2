@@ -1,6 +1,6 @@
 ---
 ##
- # Docker Compose file for running BSL Forward Proxy.
+ # Docker Compose file for running BSL Reverse Proxy.
  # ____________________________________________________________________________
  #
  # Created by brightSPARK Labs
@@ -16,14 +16,14 @@ services:
     image: caddy:2.8
     restart: always
     volumes:
-      - ${FORWARD_PROXY_GENERATED_CONFIG_DIR:?}/proxy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - ${FORWARD_PROXY_DATA_DIR:?}/proxy/:/data/
+      - ${REVERSE_PROXY_GENERATED_CONFIG_DIR:?}/proxy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ${REVERSE_PROXY_DATA_DIR:?}/proxy/:/data/
     ports:
       - 80:80
       - 443:443
     networks:
       proxy_network:
-    {% for network in settings.forward_proxy.routing.networks %}
+    {% for network in settings.reverse_proxy.routing.networks %}
       {{ network.name }}:
         {% if network.aliases %}
         aliases:
@@ -36,7 +36,7 @@ services:
 networks:
   proxy_network:
     driver: bridge
-  {% for network in settings.forward_proxy.routing.networks %}
+  {% for network in settings.reverse_proxy.routing.networks %}
   {{ network.name }}:
     external: true
   {% endfor %}

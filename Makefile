@@ -49,9 +49,9 @@ format: venv ## Format all code
 .PHONY: docker
 docker: ## Build docker image
 	docker build --build-arg APP_VERSION=${APP_VERSION} \
-		-t docker.brightsparklabs.com/brightsparklabs/forward-proxy:${APP_VERSION} \
-		-t docker.brightsparklabs.com/brightsparklabs/forward-proxy:latest .
+		-t docker.brightsparklabs.com/brightsparklabs/reverse-proxy:${APP_VERSION} \
+		-t docker.brightsparklabs.com/brightsparklabs/reverse-proxy:latest .
 
 .PHONY: docker-publish
 docker-publish: docker ## Publish the the docker image
-	docker push docker.brightsparklabs.com/brightsparklabs/forward-proxy:${APP_VERSION}
+	docker push docker.brightsparklabs.com/brightsparklabs/reverse-proxy:${APP_VERSION}
