@@ -55,3 +55,7 @@ docker: ## Build docker image
 .PHONY: docker-publish
 docker-publish: docker ## Publish the the docker image
 	docker push docker.brightsparklabs.com/brightsparklabs/reverse-proxy:${APP_VERSION}
+
+.PHONY: precommit
+precommit: venv ## Run precommit hooks.
+	$(VENV_NAME)/bin/pre-commit run -c .pre-commit/pre-commit-config.yaml
