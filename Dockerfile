@@ -6,7 +6,7 @@
  # www.brightsparklabs.com
  ##
 
-FROM brightsparklabs/appcli:3.0.0
+FROM brightsparklabs/appcli:3.1.0
 
 ENTRYPOINT ["./bsl-forward-proxy.py"]
 WORKDIR /app
