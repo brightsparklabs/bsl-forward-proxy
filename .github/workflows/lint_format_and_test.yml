@@ -1,0 +1,39 @@
+# Name of the pipeline.
+name: Run the precommit hooks to lint/format and run pytest to test.
+
+# Trigger condition.
+on: [push]
+
+# Pipeline steps.
+jobs:
+  Lint-Format-and-Test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        # fetch all history for all branches and tags, so that our `make` targets can get tags
+        with:
+          fetch-depth: 0
+      - name: Fix tag
+        # Workaround actions/checkout bug
+        # https://github.com/actions/checkout/issues/290
+        # https://github.com/actions/checkout/issues/882
+        if: github.ref_type == 'tag'
+        run: git fetch -fv origin tag "${GITHUB_REF_NAME}"
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12.3
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          # This path is specific to Ubuntu
+          path: ~/.cache/pip
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
+      - name: Run precommit
+        run: make precommit
+      - name: Run pytest
+        run: make test

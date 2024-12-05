@@ -32,6 +32,7 @@ $(VENV_NAME)/bin/activate: requirements.txt requirements-dev.txt
 	test -d ${VENV_NAME} || python -m venv ${VENV_NAME}
 	${PYTHON} -m pip install -U pip
 	${PYTHON} -m pip install -r requirements.txt -r requirements-dev.txt
+	${PYTHON} ${VENV_NAME}/bin/pre-commit install --config .github/pre-commit-config.yaml
 	touch ${VENV_NAME}/bin/activate
 
 .PHONY: test
@@ -58,4 +59,4 @@ docker-publish: docker ## Publish the the docker image
 
 .PHONY: precommit
 precommit: venv ## Run precommit hooks.
-	$(VENV_NAME)/bin/pre-commit run -c .pre-commit/pre-commit-config.yaml
+	$(VENV_NAME)/bin/pre-commit run -c .github/pre-commit-config.yaml
