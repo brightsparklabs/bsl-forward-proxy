@@ -1,0 +1,18 @@
+{
+    // Meta fields.
+    "extends": ["config:base"],
+
+    // Scheduling.
+    "schedule": ["0 2 1 * *"],
+    "timezone": "Australia/Sydney",
+
+    // Update rules.
+    "prCreation": "auto",
+    "automerge": false, //true
+    "automergeType": "pr",
+
+    // Post-update testing.
+    "postUpgradeTasks": [
+        "commands": ["make test"]
+    ],
+}
