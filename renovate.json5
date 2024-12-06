@@ -12,7 +12,7 @@
     "automergeType": "pr",
 
     // Post-update testing.
-    "postUpgradeTasks": [
+    "postUpgradeTasks": {
         "commands": ["make test"]
-    ],
+    }
 }
