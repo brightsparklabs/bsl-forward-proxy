@@ -1,7 +1,6 @@
 {
     // Meta fields.
     "enabled": true,
-    "onboarding": false,
     "extends": ["config:base"],
 
     // Scheduling.
