@@ -8,12 +8,8 @@
     "timezone": "Australia/Sydney",
 
     // Update rules.
-    "prCreation": "auto",
-    "automerge": false, //true
-    "automergeType": "pr",
-
-    // Post-update testing.
-    "postUpgradeTasks": {
-        "commands": ["make test"]
-    }
+    "prCreation": "status-success",
+    "automerge": true,
+    // Do not merge major updates.
+    "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
 }

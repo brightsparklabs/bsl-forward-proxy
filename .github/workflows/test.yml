@@ -2,7 +2,7 @@
 name: Run pytest unit tests.
 
 # Trigger condition.
-on: [push]
+on: [push, pull_request]
 
 # Pipeline steps.
 jobs:
