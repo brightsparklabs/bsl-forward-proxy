@@ -17,6 +17,7 @@
         },
         {
             "groupName": "Major Updates",
+            "matchUpdateTypes": ["major"],
             "automerge": false,
             "prCreation": "immediate"
         }
