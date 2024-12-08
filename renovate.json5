@@ -4,8 +4,10 @@
     "extends": ["config:base"],
 
     // Scheduling.
-    "schedule": ["at 2:00am on the 1st day of the month"],
+    //"schedule": ["at 2:00am on the 1st day of the month"],
     "timezone": "Australia/Sydney",
+    "prHourlyLimit": 25,
+    "prConcurrentLimit": 25,
 
     // Update rules.
     "packageRules": [
@@ -13,7 +15,8 @@
             "groupName": "All Minor and Patch Updates",
             "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
             "automerge": true,
-            "automergeType": "pr"
+            "automergeType": "pr",
+            "requiredStatusChecks": ["Test"]
         },
         {
             "groupName": "Major Updates",
