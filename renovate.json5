@@ -11,5 +11,8 @@
     "prCreation": "status-success",
     "automerge": true,
     // Do not merge major updates.
-    "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+    "packageRules": [{
+        "groupName": "All Minor and Patch Updates",
+        "matchUpdateTypes": ["minor", "patch", "pin", "digest"]
+    }]
 }
