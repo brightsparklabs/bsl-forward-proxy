@@ -9,4 +9,4 @@
  ##
 
 # Ensure versions are specified explicitly here
-bsl-appcli==3.0.0
+bsl-appcli==3.1.0
