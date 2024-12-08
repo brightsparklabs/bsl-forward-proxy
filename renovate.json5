@@ -8,11 +8,17 @@
     "timezone": "Australia/Sydney",
 
     // Update rules.
-    "prCreation": "status-success",
-    "automerge": true,
-    // Do not merge major updates.
-    "packageRules": [{
-        "groupName": "All Minor and Patch Updates",
-        "matchUpdateTypes": ["minor", "patch", "pin", "digest"]
-    }]
+    "packageRules": [
+        {
+            "groupName": "All Minor and Patch Updates",
+            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+            "automerge": true,
+            "automergeType": "pr"
+        },
+        {
+            "groupName": "Major Updates",
+            "automerge": false,
+            "prCreation": "immediate"
+        }
+    ]
 }
