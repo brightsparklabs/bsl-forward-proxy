@@ -24,7 +24,7 @@ services:
     networks:
       proxy_network:
     {% for network in settings.reverse_proxy.routing.networks %}
-      {{ network.name }}:
+      {{ network.project }}_{{ network.network | default('default') }}:
         {% if network.aliases %}
         aliases:
         {% for alias in network.aliases %}
@@ -37,6 +37,6 @@ networks:
   proxy_network:
     driver: bridge
   {% for network in settings.reverse_proxy.routing.networks %}
-  {{ network.name }}:
+  {{ network.project }}_{{ network.network | default('default') }}:
     external: true
   {% endfor %}

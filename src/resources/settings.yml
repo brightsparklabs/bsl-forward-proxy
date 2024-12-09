@@ -17,18 +17,34 @@ reverse_proxy:
       # Whether to use internal Caddy certificates rather than Acme ones (useful for testing).
       enable_internal_tls: true
 
+      # Settings pertaining to the ACME DNS challenge type.
+      acme_dns_challenge:
+        # Whether to use ACME DNS challenge (rather than HTTP challenge) to acquire certificates.
+        enable: true
+
+        # AWS access key with permissions to manipulate Route53 records for DNS challenge.
+        access_key_id: CHANGE ME
+
+        # AWS access key with permissions to manipulate Route53 records for DNS challenge.
+        secret_access_key: CHANGE ME
+
   # Settings pertaining to the forwarded networks and routes.
   routing:
-    # List of known docker networks to route to. Does not need to include the network for this project.
-    # - name: internal-docker-network  <- Internal docker network.
-    #   aliases:
-    #   - "actual-domain.example.com"  <- Aliases. Same as `docker network create --alias $`
+    # List of known docker networks to route to.
+    # This maps to the docker compose network `<project>_<network | "default">`.
+    # Does NOT need to include the network for this project.
     networks: []
+    # - network: default  # Network name [Optional] (see `com.docker.compose.network` label).
+    #   project: stack-a  # Project name (see `com.docker.compose.project` label).
+    #   aliases:
+    #   - "actual-domain.example.com" # Aliases. Same as `docker network create --alias $`
 
     # List of services to route to.
-    # - dns_record: kibana.myproject.local        <- External record.
-    #   endpoint: kibana-montitoring-network:5601 <- Internal service.
     routes: []
+      # # The endpoint exposed externally by the reverse proxy to access the service.
+      # - external_endpoint: https://example.com/hello/there
+      #   # The endpoint used internally (by the container network) to access the service.
+      #   internal_endpoint: http://example-service:3422
 
   # Settings pertaining to debugging the platform.
   debug:
