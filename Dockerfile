@@ -6,13 +6,13 @@
  # www.brightsparklabs.com
  ##
 
-FROM brightsparklabs/appcli:3.0.0
+FROM brightsparklabs/appcli:3.1.0
 
 ENTRYPOINT ["./reverse-proxy.py"]
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --requirement requirements.txt
+RUN pip install --no-cache-dir --requirement requirements.txt
 COPY src .
 
 # TODO: uncomment if using a local appcli during dev
