@@ -1,29 +1,33 @@
 {
-    // Meta fields.
-    "enabled": true,
-    "extends": ["config:base"],
-
-    // Scheduling.
-    "schedule": ["at 2:00am on the 1st day of the month"],
-    "timezone": "Australia/Sydney",
-    "prHourlyLimit": 25,
-    "prConcurrentLimit": 25,
-
-    // Update rules.
-    "packageRules": [
+    enabled: true,
+    extends: [
+        'config:recommended',
+    ],
+    schedule: [
+        'at 2:00am on the 1st day of the month',
+    ],
+    timezone: 'Australia/Sydney',
+    prHourlyLimit: 25,
+    prConcurrentLimit: 25,
+    packageRules: [
         {
-            "groupName": "All Minor and Patch Updates",
-            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-            "automerge": true,
-            "automergeType": "pr",
-            // NOTE: This maps to Github Actions workflows.
-            "requiredStatusChecks": ["Test"]
+            groupName: 'All Minor and Patch Updates',
+            matchUpdateTypes: [
+                'minor',
+                'patch',
+                'pin',
+                'digest',
+            ],
+            automerge: true,
+            automergeType: 'pr',
         },
         {
-            "groupName": "Major Updates",
-            "matchUpdateTypes": ["major"],
-            "automerge": false,
-            "prCreation": "immediate"
-        }
-    ]
+            groupName: 'Major Updates',
+            matchUpdateTypes: [
+                'major',
+            ],
+            automerge: false,
+            prCreation: 'immediate',
+        },
+    ],
 }
