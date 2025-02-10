@@ -16,7 +16,7 @@
                 'digest',
             ],
             automerge: true,
-            automergeType: 'pr',
+            automergeType: 'branch',
             prCreation: 'status-success',
         },
         {
