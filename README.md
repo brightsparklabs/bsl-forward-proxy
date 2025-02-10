@@ -73,13 +73,3 @@ reverse_proxy:
     #   endpoint: kibana-montitoring-network:5601 <- Internal service.
     routes: []
 ```
-
-It is assumed that all the `reverse_proxy.routing.networks` networks have already been created.
-If they do not exist, then they will need to be created manually.
-
-```bash
-docker network create stack-b_default \
-  --label "com.docker.compose.network=default" \
-  --label "com.docker.compose.project=stack-b" \
-  --label "com.docker.compose.version=2.29.7"
-```

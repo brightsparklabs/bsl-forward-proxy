@@ -13,13 +13,20 @@
 	local_certs
 	{% endif %}{# settings.reverse_proxy.services.proxy.enable_internal_tls #}
 
+	{% if settings.reverse_proxy.services.proxy.acme_dns_challenge.enable %}
+	acme_dns route53 {
+		access_key_id "{{ settings.reverse_proxy.services.proxy.acme_dns_challenge.access_key_id }}"
+		secret_access_key "{{ settings.reverse_proxy.services.proxy.acme_dns_challenge.secret_access_key }}"
+	}
+	{% endif %}{# settings.reverse_proxy.services.proxy.enable_acme_dns_challenge #}
+
 }
 
 
 {% for route in settings.reverse_proxy.routing.routes %}
 
-https://{{ route.dns_record }} {
-    reverse_proxy http://{{ route.endpoint }}
+{{ route.external_endpoint }} {
+    reverse_proxy {{ route.internal_endpoint }}
 }
 
 {% endfor %}
