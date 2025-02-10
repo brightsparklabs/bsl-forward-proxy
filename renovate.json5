@@ -3,9 +3,6 @@
     extends: [
         'config:recommended',
     ],
-    schedule: [
-        'at 2:00am on the 1st day of the month',
-    ],
     timezone: 'Australia/Sydney',
     prHourlyLimit: 25,
     prConcurrentLimit: 25,
